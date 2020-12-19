@@ -1,0 +1,77 @@
+﻿<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+    <title>BlazorApp</title>
+    <base href="/" />
+    <link href="css/bootstrap/bootstrap.min.css" rel="stylesheet" />
+    <link href="css/app.css" rel="stylesheet" />
+    <link href="BlazorApp.styles.css" rel="stylesheet" />
+    <link href="manifest.json" rel="manifest" />
+    <link rel="apple-touch-icon" sizes="512x512" href="icon-512.png" />
+</head>
+
+<body>
+    <div id="app">Loading...</div>
+
+    <div id="blazor-error-ui">
+        An unhandled error has occurred.
+        <a href="" class="reload">Reload</a>
+        <a class="dismiss">🗙</a>
+    </div>
+    <!--<script src="_framework/blazor.webassembly.js" autostart="false"></script>-->
+    <!--<script>
+        const webassemblySupported = (function () {
+            try {
+                if (typeof WebAssembly === "object"
+                    && typeof WebAssembly.instantiate === "function") {
+                    const module = new WebAssembly.Module(
+                        Uint8Array.of(0x0, 0x61, 0x73, 0x6d,
+                            0x01, 0x00, 0x00, 0x00));
+                    if (module instanceof WebAssembly.Module)
+                        return new WebAssembly.Instance(module)
+                            instanceof WebAssembly.Instance;
+
+                }
+            } catch (e) {
+            }
+            return false;
+        })();
+
+        if (webassemblySupported) {
+            Blazor.start({});
+        }
+        else {
+            window.location.href = "https://www.webmatrix.ir";
+        }
+    </script>-->
+    <script>
+        var isSafari = navigator.vendor && navigator.vendor.indexOf('Apple') > -1 &&
+            navigator.userAgent &&
+            navigator.userAgent.indexOf('CriOS') == -1 &&
+            navigator.userAgent.indexOf('FxiOS') == -1;
+
+        var head = document.getElementsByTagName('head')[0];
+        var js = document.createElement("script");
+
+        js.type = "text/javascript";
+
+        if (isSafari) {
+            js.src = "_framework/blazor.webassembly.fix.js";
+            console.log("Load Assembly Js What Happend");
+        }
+        else {
+            js.src = "_framework/blazor.webassembly.js";
+            console.log("Load Normanl WebAssembly");
+        }
+
+        head.appendChild(js);
+
+        //Blazor.start({});
+    </script>
+    <script>navigator.serviceWorker.register('service-worker.js');</script>
+</body>
+
+</html>
